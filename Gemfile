@@ -17,6 +17,8 @@ gem 'autoprefixer-rails'
 gem 'slim'
 gem 'select2-rails'
 
+gem 'therubyracer', :platforms => :ruby
+
 group :development, :test do
   gem 'spring', '~> 1.1.3'
   gem 'pry', '~> 0.10.0'
@@ -27,5 +29,4 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 2.6.2'
   gem 'simplecov', '~> 0.7.1'
   gem 'annotate'
-  gem 'therubyracer'
 end
