@@ -1,6 +1,6 @@
 .nerd-lightning
 .row
-  h1.text-center Team #{@team.name} Questions #{session[:team_id]}
+  h1.text-center Team #{@team.name} Questions
 
   = form_for [@team, @question], html: { class: "form-question", role: "form" } do |f|
     #alert_wrapper
