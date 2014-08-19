@@ -1,0 +1,33 @@
+.nerd-lightning
+.row
+  h1.text-center Team #{@team.name} Questions #{session[:team_id]}
+
+  = form_for [@team, @question], html: { class: "form-question", role: "form" } do |f|
+    #alert_wrapper
+
+    .form-group
+      .row
+        .col-md-7
+          = text_area_tag 'question[one][content]', nil, class: "form-control", placeholder: "What is your 1-pt question?", required: true, autofocus: true
+        .col-md-5
+          = text_field_tag 'question[one][answer]', nil, class: "form-control", placeholder: "Answer to the 1-pt question...", required: true
+          = hidden_field_tag 'question[one][points]', 1
+
+    .form-group
+      .row
+        .col-md-7
+          = text_area_tag 'question[two][content]', nil, class: "form-control", placeholder: "What is your 2-pt question?", required: true
+        .col-md-5
+          = text_field_tag 'question[two][answer]', nil, class: "form-control", placeholder: "Answer to the 2-pt question...", required: true
+          = hidden_field_tag 'question[two][points]', 2
+
+    .form-group
+      .row
+        .col-md-7
+          = text_area_tag 'question[five][content]', nil, class: "form-control", placeholder: "What is your 5-pt question?", required: true
+        .col-md-5
+          = text_field_tag 'question[five][answer]', nil, class: "form-control", placeholder: "Answer to the 5-pt question...", required: true
+          = hidden_field_tag 'question[five][points]', 5
+
+    .form-group
+      button.btn.btn-lg.btn-primary.btn-block Let's do this...

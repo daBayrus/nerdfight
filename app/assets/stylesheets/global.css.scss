@@ -1,0 +1,37 @@
+
+.nerd-lightning {
+  background: image-url('nerd-lightning.jpg') no-repeat center top;
+  height: 350px;
+}
+
+.form-registration, .form-question {
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.form-registration {
+  width: 40%;
+}
+
+.form-question {
+  width: 60%;
+
+  input.form-control {
+    height: 54px;
+  }
+}
+
+.select2-container {
+  width: 100%;
+}
+
+#alert_wrapper {
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+}
+
+textarea {
+  resize: none;
+}

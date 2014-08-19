@@ -1,0 +1,18 @@
+.nerd-lightning
+.row
+  h1.text-center Nerd Fight
+
+  = form_for @team, html: { class: "form-registration", role: "form" } do |f|
+    #alert_wrapper
+
+    .form-group
+      = f.text_field :name, class: "form-control", placeholder: "What is your team name?", required: true, autofocus: true
+
+    h3.text-center Members
+
+    = f.fields_for :nerds do |n|
+      .form-group
+        = n.collection_select :user_id, User.all, :id, :name, {}, { multiple: true, required: true }
+
+    .form-group
+      button.btn.btn-lg.btn-primary.center-block We are definitely joining...

@@ -1,0 +1,6 @@
+- if obj.errors.any?
+  .alert.alert-block.alert-danger.fade-in
+    a.close data-dismiss='alert' x
+    ul
+      - obj.errors.full_messages.each do |msg|
+        li = msg
