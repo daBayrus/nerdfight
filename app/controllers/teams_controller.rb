@@ -1,6 +1,10 @@
 class TeamsController < ApplicationController
   before_action :check_steps, only: [ :new, :create ]
-  skip_before_action :check_if_done, only: [ :show ]
+  skip_before_action :check_if_done, only: [ :index, :show ]
+
+  def index
+    @teams = Team.all
+  end
 
   def show
     @team = Team.find params[:id]

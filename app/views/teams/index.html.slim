@@ -1,0 +1,20 @@
+h1.text-center Nerd Fight Teams
+br
+.panel.panel-default
+  .table-responsive
+    table.table.table-striped.table-hover
+      thead
+        tr
+          th.col-md-1 #
+          th.col-md-3 Name
+          th Members
+          th.col-md-2.text-center # of Questions
+
+      tbody
+        - @teams.each do |t|
+          tr
+            td = t.id
+            td = t.name
+            td = t.members.join(', ')
+            td.text-center
+              = t.questions.size
