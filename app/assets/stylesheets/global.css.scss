@@ -35,3 +35,85 @@
 textarea {
   resize: none;
 }
+
+
+// Play
+.start {
+  @extend .text-center;
+  padding: 40px 20px;
+}
+
+.quiz-page {
+  .quiz-main {
+    @extend .col-md-9;
+    padding: 40px 0;
+  }
+  .leader-board {
+    @extend.col-md-3;
+    padding: 40px 0;
+  }
+}
+
+.question-area {
+  .timer {
+    color: #c00;
+  }
+
+  .from {
+    font-size: 20px;
+    padding-top: 18px;
+  }
+
+  .question {
+    @extend h1;
+    font-size: 56px;
+    font-weight: bold;
+  }
+
+  .answer {
+    font-size: 56px;
+  }
+}
+
+.points {
+  padding-top: 40px;
+  li {
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    padding: 5px;
+  }
+
+}
+
+.countdown-row {
+  @extend .clearfix;
+  display: block;
+
+  .countdown-section {
+  }
+
+  .countdown-amount {
+    font-size: 120px;
+    font-weight: bold;
+    display: block;
+    line-height: 96px;
+  }
+  .countdown-period {
+    font-size: 16px;
+    display: none;
+    text-transform: lowercase;
+    margin-top: -5px;
+  }
+}
+
+.leader-board {
+  .panel {
+    position: fixed;
+  }
+
+  h2 {
+    @extend h3;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
