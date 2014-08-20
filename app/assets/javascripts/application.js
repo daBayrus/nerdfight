@@ -15,4 +15,6 @@
 //  require turbolinks
 //= require bootstrap-sprockets
 //= require select2
+//= require vendor/jquery.plugin.min
+//= require vendor/jquery.countdown.min
 //= require_tree .

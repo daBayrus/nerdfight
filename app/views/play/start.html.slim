@@ -1,0 +1,17 @@
+script type="text/json" id="quiz-bootstrap-data"
+  = @quiz.to_json(include: [:questions, :teams]).html_safe
+
+ruby:
+  question = @quiz.questions.unasked.shuffle.first
+  number = @quiz.questions.asked.size + 1
+
+.row.quiz-page
+  section.quiz-main
+    - if question
+      = render 'question', question: question, number: number
+    - else
+      h1 Winner: Team #{@quiz.team_standings.first.name}!
+
+  = render 'leader_board', quiz: @quiz
+
+
