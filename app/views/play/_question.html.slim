@@ -1,33 +1,33 @@
 .question-area
   h1
-    = "Question ##{number}"
-  p.from
-    ' By:
-    strong
-      = "Team #{question.team.name}"
+    | Question ##{number}
+    small &nbsp;#{question.points}pt#{question.points > 1 ? 's' :''}
+
   .question.page-header
     => question.content
-    small
-      = "#{question.points}pt#{question.points > 1 ? 's' :''}"
+
   .timer
-    span class="countdown-row countdown-show1"
-      span class="countdown-section"
-        span class="countdown-amount" 30
-        span class="countdown-period" Seconds
+    span.countdown-row.countdown-show1
+      span.countdown-section
+        span.countdown-amount 30
+        span.countdown-period Seconds
+
   .answer-field.hide
     a.btn.btn-lg.btn-primary href="#" Show Answer
+
   h1.answer.hide.text-success
     = question.answer
 
 .points.hide
   = form_tag({action: :next}, method: :post)  do |f|
     input type="hidden" name="question_id" value="#{question.id}"
+
     h3 Correct Answers
     ul.list-unstyled
       - for team in @quiz.teams do
         li
           label.team
             input type="checkbox" name="correct[#{team.id}]"
-            =< "Team #{team.name}"
+            =< team.name
 
     button.btn.btn-lg.btn-primary type="submit" Next Question

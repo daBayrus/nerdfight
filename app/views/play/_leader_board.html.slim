@@ -1,17 +1,16 @@
 section.leader-board
   .panel.panel-default
     .panel-heading
-      h2 Scores
+      h2.text-center Leaderboard
     .panel-body
       table.table
         thead
           tr
             th Team
-            th Leaderboard
+            th Score
         tbody
           - for team in quiz.team_standings do
-
             tr
-              td= "Team #{team.name}"
-              td= quiz.total_score(team)
+              td = team.name
+              td.text-right = quiz.total_score(team)
 

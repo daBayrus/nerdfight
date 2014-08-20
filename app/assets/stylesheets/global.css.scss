@@ -46,11 +46,15 @@ textarea {
 .quiz-page {
   .quiz-main {
     @extend .col-md-9;
-    padding: 40px 0;
+    padding: 40px 30px 40px;
   }
   .leader-board {
     @extend.col-md-3;
     padding: 40px 0;
+  }
+  .winner {
+    color: maroon;
+    text-align: center;
   }
 }
 
@@ -67,7 +71,7 @@ textarea {
   .question {
     @extend h1;
     font-size: 56px;
-    font-weight: bold;
+    // font-weight: bold;
   }
 
   .answer {

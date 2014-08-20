@@ -10,7 +10,9 @@ ruby:
     - if question
       = render 'question', question: question, number: number
     - else
-      h1 Winner: Team #{@quiz.team_standings.first.name}!
+      .nerd-lightning
+      h1.text-center Nerd Fight Champions
+      h1.winner Team #{@quiz.team_standings.first.name}!
 
   = render 'leader_board', quiz: @quiz
 

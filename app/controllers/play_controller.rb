@@ -1,5 +1,4 @@
 class PlayController < ApplicationController
-
   skip_before_action :check_if_done
   before_action :quiz, only: [:start, :next]
 
