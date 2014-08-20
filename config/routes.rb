@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :play, only: [:index] do
     collection do
       get 'start'
+      post 'next'
     end
   end
 

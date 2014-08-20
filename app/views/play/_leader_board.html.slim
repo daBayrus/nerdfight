@@ -1,0 +1,17 @@
+section.leader-board
+  .panel.panel-default
+    .panel-heading
+      h2 Scores
+    .panel-body
+      table.table
+        thead
+          tr
+            th Team
+            th Leaderboard
+        tbody
+          - for team in quiz.team_standings do
+
+            tr
+              td= "Team #{team.name}"
+              td= quiz.total_score(team)
+

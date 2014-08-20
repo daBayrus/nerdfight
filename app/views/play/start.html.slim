@@ -1,60 +1,17 @@
+script type="text/json" id="quiz-bootstrap-data"
+  = @quiz.to_json(include: [:questions, :teams]).html_safe
+
+ruby:
+  question = @quiz.questions.unasked.shuffle.first
+  number = @quiz.questions.asked.size + 1
+
 .row.quiz-page
-
   section.quiz-main
-    .question-area
-      h1 Question #1
-      p.from
-        ' By:
-        strong
-          = "Team Wayne"
-      .question.page-header
-        ' Who is the father of modern chemistry when the thing was still worth knowing?
-        small 2pts
-      .timer
-        span class="countdown-row countdown-show1"
-          span class="countdown-section"
-            span class="countdown-amount" 30
-            span class="countdown-period" Seconds
-      .answer-field.hide
-        a.btn.btn-lg.btn-primary href="#" Show Answer
-      h1.answer.hide.text-success
-        | This is the answer
+    - if question
+      = render 'question', question: question, number: number
+    - else
+      h1 Winner: Team #{@quiz.team_standings.first.name}!
 
-    .points.hide
-      h3 Correct Answers
-      ul.list-unstyled
-        li
-          label.team
-            input type="checkbox" name="correct"
-            = " Team Joel"
-        li
-          label.team
-            input type="checkbox" name="correct"
-            = " Team Joel"
-        li
-          label.team
-            input type="checkbox" name="correct"
-            = " Team Joel"
-
-      a.btn.btn-lg.btn-primary href="#" Next Question
-
-
-  section.leader-board
-    .panel.panel-default
-      .panel-heading
-        h2 Leaderboard
-      .panel-body
-        table.table
-          thead
-            tr
-              th Team
-              th Score
-          tbody
-            tr
-              td Team 1
-              td 4
-            tr
-              td Team 2
-              td 8
+  = render 'leader_board', quiz: @quiz
 
 
