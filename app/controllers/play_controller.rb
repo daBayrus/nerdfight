@@ -16,7 +16,7 @@ class PlayController < ApplicationController
       question = @quiz.questions.find(params[:question_id])
       question.asked = true
       question.save
-      corrects = params[:correct]
+      corrects = params[:correct] || {}
       @quiz.teams.each do |team|
         correct = corrects[team.id.to_s]
         if correct
