@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.1.4'
-gem 'pg', '~> 0.17.1'# Use SCSS for stylesheets
+gem 'pg', '~> 0.17.1'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -18,6 +17,10 @@ gem 'slim'
 gem 'select2-rails'
 
 gem 'therubyracer', :platforms => :ruby
+
+gem 'private_pub'
+gem 'thin'
+gem 'roman-numerals'
 
 group :development, :test do
   gem 'spring', '~> 1.1.3'

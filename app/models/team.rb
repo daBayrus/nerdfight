@@ -1,4 +1,6 @@
 class Team < ActiveRecord::Base
+  belongs_to :event
+
   has_many :nerds
   has_many :users, through: :nerds
   has_many :questions

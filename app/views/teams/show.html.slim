@@ -1,4 +1,9 @@
 .nerd-lightning
-h1.text-center Thank you
-h1.text-center Team #{@team.name}
-h1.text-center for joining the Nerd Fight...
+h1.text-center Maraming salamat Team
+h1.text-center.text-primary #{@team.name}
+h1.text-center for joining #{@event.name}...
+br
+
+.row
+  .col-md-offset-4.col-md-4
+    = link_to "Game time...", quiz_play_index_path, class: "btn btn-lg btn-block btn-success"

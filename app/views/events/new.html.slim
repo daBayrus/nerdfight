@@ -1,0 +1,16 @@
+.nerd-lightning
+.row
+  h1.text-center Nerd Fight #{@version}
+
+  = form_for @event, html: { class: "form-registration", role: "form" } do |f|
+    #alert_wrapper
+
+    .form-group
+      = f.text_field :name, class: "form-control input-lg", value: "Nerd Fight #{@version}", placeholder: "Nerd Fight #{@version}", required: true, readonly: true
+
+    / TODO: make this date picker
+    .form-group
+      = f.text_field :duration, class: "form-control input-lg", placeholder: "When is this?", required: true, autofocus: true
+
+    .form-group
+      button.btn.btn-lg.btn-primary.center-block Create this event...

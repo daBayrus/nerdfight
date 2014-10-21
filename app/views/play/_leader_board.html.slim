@@ -9,8 +9,8 @@ section.leader-board
             th Team
             th Score
         tbody
-          - for team in quiz.team_standings do
-            tr
-              td = team.name
-              td.text-right = quiz.total_score(team)
+          / - for team in quiz.team_standings do
+          /   tr
+          /     td = team.name
+          /     td.text-right = quiz.total_score(team)
 

@@ -1,13 +1,14 @@
+= question.id
 .question-area
   h1
-    | Question ##{number}
+    | Question ##{asked}
     small &nbsp;#{question.points}pt#{question.points > 1 ? 's' :''}
 
   .question.page-header
     => question.content
 
   .timer
-    span.countdown-row.countdown-show1
+    span.countdown-row.countdown-show
       span.countdown-section
         span.countdown-amount 30
         span.countdown-period Seconds
@@ -19,15 +20,10 @@
     = question.answer
 
 .points.hide
-  = form_tag({action: :next}, method: :post)  do |f|
+  = form_tag({action: :next}, method: :post) do |f|
     input type="hidden" name="question_id" value="#{question.id}"
 
-    h3 Correct Answers
+    h3 Team Answers
     ul.list-unstyled
-      - for team in @quiz.teams do
-        li
-          label.team
-            input type="checkbox" name="correct[#{team.id}]"
-            =< team.name
 
     button.btn.btn-lg.btn-primary type="submit" Next Question

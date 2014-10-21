@@ -11,3 +11,5 @@ html
       = yield
 
   = javascript_include_tag "application"
+  = subscribe_to "/questions/active"
+  = subscribe_to "/questions/new"

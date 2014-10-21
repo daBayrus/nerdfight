@@ -1,0 +1,24 @@
+= @team.name
+#quiz-client.hidden
+  .row.quiz-page
+    section.quiz-main
+      .question-area
+        h1
+          | Question #
+          span 1
+          small 1pt
+
+        .question.page-header
+
+        .timer
+          span.countdown-row.countdown-show
+            span.countdown-section
+              span.countdown-amount 30
+              span.countdown-period Seconds
+
+  .row
+    .col-md-9
+      .form-group
+        label What is your answer?
+        = text_field_tag 'answer', nil, class: "form-control input-lg", placeholder: "Hmmm... tama kaya?", autofocus: "true"
+        input type="hidden" name="question_id" id="question_id" value=""

@@ -1,19 +1,11 @@
-script type="text/json" id="quiz-bootstrap-data"
-  = @quiz.to_json(include: [:questions, :teams]).html_safe
+#quiz-server
+  .row.quiz-page
+    section.quiz-main
+      - if @question
+        = render 'question', question: @question, asked: @asked
+      - else
+        .nerd-lightning
+        h1.text-center Nerd Fight Champions
+        h1.winner Team #{@quiz.team_standings.first.name}!
 
-ruby:
-  question = @quiz.questions.unasked.shuffle.first
-  number = @quiz.questions.asked.size + 1
-
-.row.quiz-page
-  section.quiz-main
-    - if question
-      = render 'question', question: question, number: number
-    - else
-      .nerd-lightning
-      h1.text-center Nerd Fight Champions
-      h1.winner Team #{@quiz.team_standings.first.name}!
-
-  = render 'leader_board', quiz: @quiz
-
-
+    = render 'leader_board', quiz: @quiz

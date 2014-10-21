@@ -1,0 +1,18 @@
+- teams.each do |t|
+  li
+    .row
+      .col-md-1
+        .nice-cb
+          input type="checkbox" name="correct[#{t.id}]" value="none" id="team-#{t.id}"
+          label for="team-#{t.id}"
+      .col-md-5
+        = t.name
+      .col-md-6
+        - team = answers.find_by_team_id(t.id)
+        - if team
+            strong = team.answer
+        - else
+            i No answer given
+
+
+
