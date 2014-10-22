@@ -1,0 +1,16 @@
+.nerd-lightning
+br
+.jumbotron
+  h1.text-center Congratulations
+  h1.text-center.winner = @rankings.first[0]
+  h1.text-center Nerd Fight Champions
+
+h1 Official Results
+
+.standings
+  - @rankings.each do |team, points|
+    .row
+      .col-md-6
+        = team
+      .col-md-2
+        = points

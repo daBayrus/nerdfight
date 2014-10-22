@@ -3,6 +3,7 @@ class QuizPage
 
   constructor: (@page) ->
     @timer = @page.find('.timer')
+    @question_id = @page.find('input#question_id')
     @answerButton = @page.find('.answer-field')
     @answer = @page.find('.answer')
     @points = @page.find('.points')
@@ -25,7 +26,7 @@ class QuizPage
 
   revealPoints: ->
     @points.removeClass('hide')
-    $.get "/play/answers"
+    $.get "/play/answers", { question_id: @question_id.val() }
 
   timesUp: ->
     @timer.slideUp()

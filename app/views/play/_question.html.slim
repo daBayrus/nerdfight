@@ -1,5 +1,5 @@
-= question.id
 .question-area
+  input type="hidden" name="question_id" id="question_id" value="#{question.id}"
   h1
     | Question ##{asked}
     small &nbsp;#{question.points}pt#{question.points > 1 ? 's' :''}

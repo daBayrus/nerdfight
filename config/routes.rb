@@ -8,6 +8,9 @@ Rails.application.routes.draw do
       get 'start'
       get 'quiz'
       get 'answers'
+      get 'rankings'
+      get 'winner'
+
       post 'next'
       post 'buzz'
     end

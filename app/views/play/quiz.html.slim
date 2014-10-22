@@ -1,4 +1,9 @@
-= @team.name
+.text-center = @team.name
+
+#waiting
+  .nerd-lightning
+  h1.text-center Waiting for the next question...
+
 #quiz-client.hidden
   .row.quiz-page
     section.quiz-main
@@ -15,6 +20,8 @@
             span.countdown-section
               span.countdown-amount 30
               span.countdown-period Seconds
+
+    = render 'leader_board', rankings: @rankings
 
   .row
     .col-md-9

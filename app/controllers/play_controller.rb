@@ -1,8 +1,8 @@
 class PlayController < ApplicationController
-  before_action :set_event, only: [ :start, :next, :buzz, :answers ]
+  before_action :set_event, only: [ :start, :next, :quiz, :rankings, :buzz, :answers, :winner ]
   before_action :set_team, only: [ :quiz, :buzz, :answers ]
   before_action :set_question, only: [ :start, :next, :answers ]
-
+  before_action :set_standings, only: [ :start, :quiz, :rankings, :winner ]
   skip_before_action :check_if_done
 
   def index
@@ -11,17 +11,13 @@ class PlayController < ApplicationController
   def start
     question = { id: @question.id, content: @question.content, points: @question.points, asked: @asked }
     PrivatePub.publish_to "/questions/active", question
-
-    if @event.all_questions_asked?
-      @event.conclude
-    end
   end
 
   def next
     if @event
       @question.asked = true
       @question.save
-      session[:question_id] = nil
+      delete_question_session
 
       corrects = params[:correct] || {}
       @event.teams.each do |team|
@@ -40,8 +36,12 @@ class PlayController < ApplicationController
   end
 
   def quiz
-    @question = Question.new({ content: '', points: 0, asked: 0 })
-    @number = 0
+    unless @event.all_questions_asked?
+      @question = Question.new({ content: '', points: 0, asked: 0 })
+      @number = 0
+    else
+      redirect_to :winner_play_index
+    end
   end
 
   def buzz
@@ -56,11 +56,13 @@ class PlayController < ApplicationController
     @answers = @question.scores
   end
 
-  private
+  def rankings
+  end
 
-  # def safe_params
-  #   params.permit :answer
-  # end
+  def winner
+  end
+
+  private
 
   def set_event
     if session[:event_id]
@@ -75,19 +77,51 @@ class PlayController < ApplicationController
 
   def set_team
     if session[:team_id]
-      @team = Team.find session[:team_id]
+      @team = @event.teams.find session[:team_id]
     else
       redirect_to new_team_path, alert: 'Only registered teams are allowed to join. Kindly register.'
     end
   end
 
   def set_question
-    if session[:question_id]
-      @question = Question.find session[:question_id]
+    question_id = session[:question_id] || params[:question_id]
+    if question_id
+      @question = @event.questions.find question_id
     else
-      @question = @event.questions.unasked.shuffle.first
-      session[:question_id] = @question.id
+      unless @event.all_questions_asked?
+        @question = @event.questions.unasked.shuffle.first
+        session[:question_id] = @question.id
+      else
+        redirect_to :winner_play_index
+      end
     end
     @asked = @event.questions.asked.size + 1
+  end
+
+  def set_standings
+    standings = {}
+    @rankings = {}
+
+    @event.teams.each do |t|
+      standings[t.id] = 0
+    end
+
+    @event.questions.asked.each do |q|
+      q.scores.each do |s|
+        standings[s.team_id] += s.points.nil? ? 0 : s.points
+      end
+    end
+
+    standings = standings.sort_by { |id, value| value }.reverse
+    standings.each do |id, points|
+      team = @event.teams.find id
+      @rankings[team.name] = points
+    end
+
+    @rankings
+  end
+
+  def delete_question_session
+    session.delete(:question_id)
   end
 end

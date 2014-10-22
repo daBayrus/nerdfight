@@ -1,5 +1,5 @@
 section.leader-board
-  .panel.panel-default
+  .panel.panel-primary
     .panel-heading
       h2.text-center Leaderboard
     .panel-body
@@ -7,10 +7,10 @@ section.leader-board
         thead
           tr
             th Team
-            th Score
+            th.text-right Score
         tbody
-          / - for team in quiz.team_standings do
-          /   tr
-          /     td = team.name
-          /     td.text-right = quiz.total_score(team)
+          - rankings.each do |team, points|
+            tr
+              td = team
+              td.text-right = points
 

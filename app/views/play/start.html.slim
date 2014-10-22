@@ -5,7 +5,6 @@
         = render 'question', question: @question, asked: @asked
       - else
         .nerd-lightning
-        h1.text-center Nerd Fight Champions
-        h1.winner Team #{@quiz.team_standings.first.name}!
+        h1.text-center Waiting for the next question...
 
-    = render 'leader_board', quiz: @quiz
+    = render 'leader_board', rankings: @rankings

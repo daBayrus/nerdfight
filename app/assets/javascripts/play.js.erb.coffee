@@ -25,9 +25,14 @@ class PlayPage
     @asked.text data.asked
     @points.text ' ' + data.points + '-pt'
 
+    @setRankings()
     @startTimer()
 
+  setRankings: ->
+    $.get "/play/rankings"
+
   startTimer: ->
+    @timer.slideDown()
     @timer.countdown(
       until: @timeLimit, format: 'S'
       onExpiry: =>
@@ -49,13 +54,15 @@ class PlayPage
 $ ->
   if $('#quiz-client').length
     $play = $('#quiz-client')
+    $wait = $('#waiting')
 
     # Show current question
     PrivatePub.subscribe "/questions/active", (data, channel) ->
       playPage = new PlayPage($play)
       playPage.setContents(data)
 
-      $('#quiz-client').removeClass 'hidden'
+      $wait.addClass 'hidden'
+      $play.removeClass 'hidden'
 
     # Load next question
     PrivatePub.subscribe "/questions/new", (data, channel) ->
