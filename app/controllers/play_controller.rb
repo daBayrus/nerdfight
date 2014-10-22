@@ -92,6 +92,7 @@ class PlayController < ApplicationController
         @question = @event.questions.unasked.shuffle.first
         session[:question_id] = @question.id
       else
+        PrivatePub.publish_to "/questions/done", none: ''
         redirect_to :winner_play_index
       end
     end

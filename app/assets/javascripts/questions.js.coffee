@@ -1,5 +1,5 @@
 class QuizPage
-  timeLimit: 10 # in seconds
+  timeLimit: 30 # in seconds
 
   constructor: (@page) ->
     @timer = @page.find('.timer')

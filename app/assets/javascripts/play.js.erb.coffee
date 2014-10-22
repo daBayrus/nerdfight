@@ -1,5 +1,5 @@
 class PlayPage
-  timeLimit: 10 # in seconds
+  timeLimit: 30 # in seconds
 
   constructor: (@page) ->
     @timer = @page.find('.timer')
@@ -65,6 +65,6 @@ $ ->
       $play.removeClass 'hidden'
 
     # Load next question
-    PrivatePub.subscribe "/questions/new", (data, channel) ->
-      window.location.reload()
+    PrivatePub.subscribe "/questions/done", (data, channel) ->
+      window.location.href = "/play/winner"
 
